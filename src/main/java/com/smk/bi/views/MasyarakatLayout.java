@@ -70,7 +70,7 @@ public class MasyarakatLayout extends AppLayout {
         super.afterNavigation();
         viewTitle.setText(getCurrentPageTitle());
     }
-
+// test
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
