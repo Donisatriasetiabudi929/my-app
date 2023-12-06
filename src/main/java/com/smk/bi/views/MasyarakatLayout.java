@@ -1,10 +1,8 @@
 package com.smk.bi.views;
 
-import com.smk.bi.model.Masyarakat;
-import com.smk.bi.model.User;
 import com.smk.bi.views.about.AboutView;
-import com.smk.bi.views.petugas.Laporan;
-import com.smk.bi.views.petugas.PengaduanAdmin;
+import com.smk.bi.views.masyarakat.PengaduanForm;
+import com.smk.bi.views.masyarakat.PengaduanList;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
@@ -15,19 +13,17 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.vaadin.lineawesome.LineAwesomeIcon;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
-public class MainLayout extends AppLayout {
-    
+public class MasyarakatLayout extends AppLayout {
+
     private H2 viewTitle;
 
-    public MainLayout() {
-
+    public MasyarakatLayout() {
         setPrimarySection(Section.DRAWER);
         addDrawerContent();
         addHeaderContent();
@@ -44,7 +40,7 @@ public class MainLayout extends AppLayout {
     }
 
     private void addDrawerContent() {
-        H1 appName = new H1("Pengaduan Masyarakat: Petugas");
+        H1 appName = new H1("Pengaduan Masyarakat");
         appName.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
         Header header = new Header(appName);
 
@@ -56,10 +52,10 @@ public class MainLayout extends AppLayout {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
-        nav.addItem(new SideNavItem("Home", AboutView.class, LineAwesomeIcon.FILE.create()));
-        nav.addItem(new SideNavItem("Tanggapi Pengaduan", PengaduanAdmin.class, LineAwesomeIcon.FILE.create()));
-        nav.addItem(new SideNavItem("Laporan", Laporan.class, LineAwesomeIcon.FILE.create()));
+        nav.addItem(new SideNavItem("Buat Pengaduan", PengaduanForm.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("Pengaduan Saya", PengaduanList.class, LineAwesomeIcon.GLOBE_SOLID.create()));
         nav.addItem(new SideNavItem("Logout", LoginView.class, LineAwesomeIcon.FILE.create()));
+
         return nav;
     }
 
@@ -74,7 +70,7 @@ public class MainLayout extends AppLayout {
         super.afterNavigation();
         viewTitle.setText(getCurrentPageTitle());
     }
-
+// test
     private String getCurrentPageTitle() {
         PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
         return title == null ? "" : title.value();
